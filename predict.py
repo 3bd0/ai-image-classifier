@@ -28,15 +28,15 @@ def main():
   def create_model(arch, lyr2, learning_rate):
     model = getattr(models, arch)(pretrained=True)
 
-    if arch in 'vgg':
+    if 'vgg' in arch:
       lyr1 = 25088
-    elif arch in 'alexnet':
+    elif 'alexnet' in arch:
       lyr1 = 9216
-    elif arch in 'densenet':
+    elif 'densenet' in arch:
       lyr1 = 1024
-    elif arch in 'efficientnet':
+    elif 'efficientnet' in arch:
       lyr1 = 2304
-    elif arch in 'mnasnet' or arch in 'mobilenet':
+    elif 'mnasnet' in arch or 'mobilenet' in arch:
       lyr1 = 1280
       
     model.classifier = nn.Sequential(nn.Linear(lyr1, lyr2),

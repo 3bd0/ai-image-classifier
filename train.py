@@ -70,15 +70,15 @@ def main():
   running_loss = 0
   print_every=20
   
-  if arch in 'vgg':
+  if 'vgg' in arch:
     lyr1 = 25088
-  elif arch in 'alexnet':
+  elif 'alexnet' in arch:
     lyr1 = 9216
-  elif arch in 'densenet':
+  elif 'densenet' in arch:
     lyr1 = 1024
-  elif arch in 'efficientnet':
+  elif 'efficientnet' in arch:
     lyr1 = 2304
-  elif arch in 'mnasnet' or arch in 'mobilenet':
+  elif 'mnasnet' in arch or 'mobilenet' in arch:
     lyr1 = 1280
 
   lyr2 = in_arg.hidden_units
