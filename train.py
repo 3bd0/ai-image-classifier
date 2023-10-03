@@ -69,7 +69,18 @@ def main():
   steps = 0
   running_loss = 0
   print_every=20
-  lyr1 = 25088
+  
+  if arch in 'vgg':
+    lyr1 = 25088
+  elif arch in 'alexnet':
+    lyr1 = 9216
+  elif arch in 'densenet':
+    lyr1 = 1024
+  elif arch in 'efficientnet':
+    lyr1 = 2304
+  elif arch in 'mnasnet' or arch in 'mobilenet':
+    lyr1 = 1280
+
   lyr2 = in_arg.hidden_units
   model.classifier = nn.Sequential(nn.Linear(lyr1, lyr2),
                                  nn.ReLU(),
