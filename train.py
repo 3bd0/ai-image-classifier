@@ -54,7 +54,7 @@ def main():
 
   #Train Data
   learning_rate=in_arg.learning_rate
-  model=in_arg.arch
+  arch=in_arg.arch
   epochs=in_arg.epochs
   device=in_arg.gpu
 
@@ -63,7 +63,7 @@ def main():
 
   predictions_count = len(cat_to_name)
   device = torch.device("cuda" if torch.cuda.is_available() and device == "gpu" else "cpu")
-  model = getattr(models, model)(pretrained=True)
+  model = getattr(models, arch)(pretrained=True)
   for param in model.parameters():
       param.requires_grad = False
   steps = 0
@@ -122,7 +122,11 @@ def main():
 
   # Save Check Point
   model.class_to_idx = train_dataset.class_to_idx
+  
   checkpoint = {'optimizer_dict': optimizer.state_dict(),
+                'arch':in_arg.arch,
+                'hidden_units': lyr2,
+                'lr': learning_rate,
                 'class_to_idx': model.class_to_idx,
                 'state_dict': model.state_dict()}
 
